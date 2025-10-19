@@ -471,7 +471,7 @@ class _ViewProviderArchMaterial:
                     if hasattr(widget, "setText"):
                         widget.setText(value)
                     elif hasattr(widget, "setValue"):
-                        widget.setText(value)
+                        widget.setValue(value)
 
     def dumps(self):
         return None
@@ -778,6 +778,7 @@ class _ViewProviderArchMultiMaterial:
 
     def doubleClicked(self, vobj):
         self.edit()
+        return True
 
     def setupContextMenu(self, vobj, menu):
         if FreeCADGui.activeWorkbench().name() != "BIMWorkbench":
@@ -869,6 +870,7 @@ class _ArchMultiMaterialTaskPanel:
                 translate("Arch", "Thickness"),
             ]
         )
+        self.form.tree.setRootIsDecorated(False)  # remove 1st column's extra left margin
         self.form.tree.setModel(self.model)
         self.form.tree.setUniformRowHeights(True)
         self.form.tree.setItemDelegate(MultiMaterialDelegate())
